@@ -136,4 +136,4 @@ if __name__ == '__main__':
     window.show()
     app.exec_()
 
-#changes to be made
+#changes to be made in office mac. add the CHAT GPT logic to identify AWS  servie type
