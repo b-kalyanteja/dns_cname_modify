@@ -40,14 +40,14 @@ class MainWindow(QMainWindow):
         self.check_parse_btn = QPushButton("Parse data", self)
         self.check_parse_btn.clicked.connect(self.check_parse)
 
-        self.move_cnames_btn = QPushButton(" Move Cnames to Aliases", self)
-        self.move_cnames_btn.clicked.connect(self.move_cnames)
-
-        self.modify_cnames_btn = QPushButton("Modify CNAME to Alias format (*default zone id)", self)
-        self.modify_cnames_btn.clicked.connect(self.modify_cnames)
-
-        self.modify_zone_btn = QPushButton("Correct zone Id's", self)
-        self.modify_zone_btn.clicked.connect(self.modify_zone)
+        # self.move_cnames_btn = QPushButton(" Move Cnames to Aliases", self)
+        # self.move_cnames_btn.clicked.connect(self.move_cnames)
+        #
+        # self.modify_cnames_btn = QPushButton("Modify CNAME to Alias format (*default zone id)", self)
+        # self.modify_cnames_btn.clicked.connect(self.modify_cnames)
+        #
+        # self.modify_zone_btn = QPushButton("Correct zone Id's", self)
+        # self.modify_zone_btn.clicked.connect(self.modify_zone)
 
         self.save_btn = QPushButton("Save Modified File", self)
         self.save_btn.clicked.connect(self.save_file)
@@ -58,12 +58,13 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.load_file_btn)
         layout.addWidget(self.text_widget)
         layout.addWidget(self.label_widget_env)
+        layout.addWidget(self.label_widget_zone)
         layout.addWidget(self.env_input)
         layout.addWidget(self.zone_input)
         layout.addWidget(self.check_parse_btn)
-        layout.addWidget(self.move_cnames_btn)
-        layout.addWidget(self.modify_cnames_btn)
-        layout.addWidget(self.modify_zone_btn)
+        # layout.addWidget(self.move_cnames_btn)
+        # layout.addWidget(self.modify_cnames_btn)
+        # layout.addWidget(self.modify_zone_btn)
         layout.addWidget(self.save_btn)
 
         container = QWidget()
@@ -102,8 +103,8 @@ class MainWindow(QMainWindow):
             return os.path.join(os.environ['HOME'], 'Desktop')
 
 # ------- Mian Functions -----#
-    def move_cnames(self):
-        pass
+#     def move_cnames(self):
+#         pass
 
     def check_parse(self):
         text_content = self.text_widget.toPlainText()
@@ -184,16 +185,16 @@ class MainWindow(QMainWindow):
         self.text_widget.setText(display_content)
 
 
-
-    def modify_cnames(self):
-        QMessageBox.warning(self, "Not defined", "yet to implement")
-        return
-        pass
-
-    def modify_zone(self):
-        QMessageBox.warning(self, "Not defined", "yet to implement")
-        return
-        pass
+    #
+    # def modify_cnames(self):
+    #     QMessageBox.warning(self, "Not defined", "yet to implement")
+    #     return
+    #     pass
+    #
+    # def modify_zone(self):
+    #     QMessageBox.warning(self, "Not defined", "yet to implement")
+    #     return
+    #     pass
 
     def save_file(self):
         if not self.file_content:

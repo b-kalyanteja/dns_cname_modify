@@ -1,14 +1,14 @@
 import os
-import pprint
-from typing import List, Dict, Any
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QLabel, QVBoxLayout, QWidget, \
     QFileDialog, QLineEdit, QHBoxLayout, QMessageBox, QComboBox
 from PyQt5.QtCore import Qt
 import platform
 import hcl2
-import time
 from dns_verify import get_service
 from to_tf import to_hcl
+import pprint
+from typing import List, Dict, Any
+import time
 
 
 # main class to have widget in the application window
@@ -17,7 +17,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Cname to Alias ")
-        self.setGeometry(100, 100, 900, 700)
+        self.setGeometry(100, 100, 500, 700)
 
         # ------Widgets ------
 
@@ -36,45 +36,35 @@ class MainWindow(QMainWindow):
         self.load_file_btn = QPushButton("Load .tf File", self)
         self.load_file_btn.clicked.connect(self.load_file)
 
-        self.check_parse_btn = QPushButton("Parse data", self)
+        self.check_parse_btn = QPushButton("Execute", self)
         self.check_parse_btn.clicked.connect(self.check_parse)
 
-        self.move_cnames_btn = QPushButton(" Move Cnames to Aliases", self)
-        self.move_cnames_btn.clicked.connect(self.move_cnames)
-
-        self.modify_cnames_btn = QPushButton("Modify CNAME to Alias format (*default zone id)", self)
-        self.modify_cnames_btn.clicked.connect(self.modify_cnames)
-
-        self.modify_zone_btn = QPushButton("Correct zone Id's", self)
-        self.modify_zone_btn.clicked.connect(self.modify_zone)
 
         self.save_btn = QPushButton("Save Modified File", self)
         self.save_btn.clicked.connect(self.save_file)
 
 
-        # Layout and adding widgets in layout
+        # Layout
         layout = QVBoxLayout()
         layout.addWidget(self.load_file_btn)
         layout.addWidget(self.text_widget)
         layout.addWidget(self.label_widget_env)
         layout.addWidget(self.env_input)
+        layout.addWidget(self.label_widget_zone)
         layout.addWidget(self.zone_input)
         layout.addWidget(self.check_parse_btn)
-        layout.addWidget(self.move_cnames_btn)
-        layout.addWidget(self.modify_cnames_btn)
-        layout.addWidget(self.modify_zone_btn)
         layout.addWidget(self.save_btn)
 
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-        # File path and content variables
+        # File path
         self.file_path = ""
         self.file_content = ""
 
-    # ------ DEFINITIONS OF FUNCTIONS ---------
 
+    # ------ DEFINITIONS OF FUNCTIONS ---------
 
     def load_file(self):
         options = QFileDialog.Options()
@@ -101,10 +91,6 @@ class MainWindow(QMainWindow):
             return os.path.join(os.environ['HOME'], 'Desktop')
 
 # ------- Mian Functions -----#
-
-
-    def move_cnames(self):
-        pass
 
     def check_parse(self):
         text_content = self.text_widget.toPlainText()
@@ -183,16 +169,6 @@ class MainWindow(QMainWindow):
 
         #display_content = pprint.pformat(self.parsed_data, indent=4)
         self.text_widget.setText(display_content)
-
-    def modify_cnames(self):
-        QMessageBox.warning(self, "Not defined", "yet to implement")
-        return
-        pass
-
-    def modify_zone(self):
-        QMessageBox.warning(self, "Not defined", "yet to implement")
-        return
-        pass
 
     def save_file(self):
         if not self.file_content:

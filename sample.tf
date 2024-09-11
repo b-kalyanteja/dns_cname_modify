@@ -1726,6 +1726,68 @@ module "amisco_eu" {
     },
   ]
   aliases = [
-
+    {
+      name = "analyzer.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "dashboard.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "hub.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "livemonitor.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "opponent.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "profile.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    },
+    {
+      name = "recruiter.devtest"
+      type = "ALIAS"
+      alias = {
+        name                   = "front.test.amisco.eu."
+        zone_id                = module.r53_zone_ids.alb.euw1
+        evaluate_target_health = false
+      }
+    }
   ]
 }
