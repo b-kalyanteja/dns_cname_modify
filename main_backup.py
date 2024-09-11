@@ -1,14 +1,15 @@
 import os
+import json
 import pprint
-from typing import List, Dict, Any
+
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QTextEdit, QLabel, QVBoxLayout, QWidget, \
     QFileDialog, QLineEdit, QHBoxLayout, QMessageBox, QComboBox
 from PyQt5.QtCore import Qt
 import platform
 import hcl2
+import sys
 import time
 from dns_verify import get_service
-from to_tf import to_hcl
 
 
 # main class to have widget in the application window
@@ -101,8 +102,6 @@ class MainWindow(QMainWindow):
             return os.path.join(os.environ['HOME'], 'Desktop')
 
 # ------- Mian Functions -----#
-
-
     def move_cnames(self):
         pass
 
@@ -179,10 +178,12 @@ class MainWindow(QMainWindow):
         # Update the parsed data with modified modules
         self.parsed_data['module'] = modules
 
-        display_content = '\n'.join(to_hcl(self.parsed_data))
-
-        #display_content = pprint.pformat(self.parsed_data, indent=4)
+        # Convert the modified data back to a string (HCL format) for display
+        # You may need a function to convert back to HCL if necessary
+        display_content = pprint.pformat(self.parsed_data, indent=4)
         self.text_widget.setText(display_content)
+
+
 
     def modify_cnames(self):
         QMessageBox.warning(self, "Not defined", "yet to implement")
